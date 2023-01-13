@@ -7,10 +7,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context){
-    return const MaterialApp(
-      home: Text("Hello World!",
-        style: TextStyle(color: Colors.lightBlueAccent, fontSize: 40.5)
-        ,),
+    return MaterialApp(
+        theme: ThemeData(primaryColor: Colors.deepPurple),
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Center(child: Text('Word Pair Generator'))
+        ),
+        body: const Center(
+          child: Text('Hello World!'),
+        ),
+      )
     );
   }
 }
