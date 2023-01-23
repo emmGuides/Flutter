@@ -12,9 +12,17 @@ void main() {
   runApp(const MyApp());
 }
 
-class Person {
+class LivingThing {
+  var species;
+  LivingThing(this.species);
+
+  void whatSpeciesAmI(){
+    print("HELLO! I am of the species $species");
+  }
+}
+class Person extends LivingThing{
   var firstName, lastName, age;
-  Person(this.firstName, this.lastName,this.age);
+  Person(this.firstName, this.lastName,this.age) : super(null);
 
   void run(){
     if (kDebugMode) {
@@ -39,9 +47,12 @@ class Person {
 
 void test(){
   var person = Person("Emman", "Gedis", 23);
+  var dog = LivingThing("doggo");
   person.run();
   person.inhale();
   person.introduce();
+  person.whatSpeciesAmI();
+  dog.whatSpeciesAmI();
 }
 
 class MyApp extends StatelessWidget {
