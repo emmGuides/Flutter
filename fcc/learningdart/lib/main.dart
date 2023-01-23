@@ -1,7 +1,47 @@
+import 'dart:ffi';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+
+void getFullName(String name1, String name2){
+  if (kDebugMode) {
+    print("$name1 $name2");
+  }
+}
 
 void main() {
   runApp(const MyApp());
+}
+
+class Person {
+  var firstName, lastName, age;
+  Person(this.firstName, this.lastName,this.age);
+
+  void run(){
+    if (kDebugMode) {
+      print("running");
+    }
+  }
+
+  void breathing(){
+    if (kDebugMode) {
+      print("breathing");
+    }
+  }
+
+  void inhale(){
+    print("inhaling. . . .");
+  }
+
+  void introduce(){
+    print("Hello! My name is $firstName $lastName, $age years old, and you can call me $firstName");
+  }
+}
+
+void test(){
+  var person = Person("Emman", "Gedis", 23);
+  person.run();
+  person.inhale();
+  person.introduce();
 }
 
 class MyApp extends StatelessWidget {
@@ -10,6 +50,8 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    getFullName("Emman", "well gedis");
+    test();
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
