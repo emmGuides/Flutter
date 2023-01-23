@@ -81,6 +81,10 @@ Future<int> willBeMultiplying (int num) {
   return Future.delayed(const Duration(seconds: 5), () => num*2);
 }
 
+Stream<String> willBeSendingString () {
+  return Stream.periodic(const Duration(seconds: 1), (value) => "balls!");
+}
+
 void test() async {
   var emman = Person.emman();
   emman.introduce();
@@ -93,6 +97,12 @@ void test() async {
   print("[extension] fullname is $fullName");
   var res = await willBeMultiplying(69);
   print("[async] the answer is $res");
+
+  int counto = 0;
+  await for (var word in willBeSendingString()){
+    counto = counto + 1;
+    print("[STREAM yo] $counto: $word");
+  }
 }
 
 class MyApp extends StatelessWidget {
