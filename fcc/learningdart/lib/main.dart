@@ -17,13 +17,16 @@ class LivingThing {
   LivingThing(this.species);
 
   void whatSpeciesAmI(){
-    print("HELLO! I am of the species $species");
+    if (kDebugMode) {
+      print("HELLO! I am of the species $species");
+    }
   }
 }
 class Person extends LivingThing{
   var firstName, lastName, age, species;
   Person(this.firstName, this.lastName,this.age, this.species) : super(species);
 
+  // factory constructor format
   factory Person.emman() {
     return Person("Emman", "dedis", 23, 'hooman');
   }
@@ -41,11 +44,15 @@ class Person extends LivingThing{
   }
 
   void inhale(){
-    print("inhaling. . . .");
+    if (kDebugMode) {
+      print("inhaling. . . .");
+    }
   }
 
   void introduce(){
-    print("Hello! My name is $firstName $lastName, $age years old, and you can call me $firstName");
+    if (kDebugMode) {
+      print("Hello! My name is $firstName $lastName, $age years old, and you can call me $firstName");
+    }
   }
 
   @override
@@ -54,7 +61,18 @@ class Person extends LivingThing{
   @override
   int get hashCode => firstName.hashCode;
 
+}
 
+extension extend on Person{
+  void balls(){
+    print("[extension] BALLS! exclaimed $firstName $lastName");
+  }
+}
+
+extension bork on LivingThing{
+  void dogBork(){
+    print("[extension] $species borks");
+  }
 }
 
 void test(){
@@ -63,6 +81,8 @@ void test(){
   emman.whatSpeciesAmI();
   var dog = LivingThing("doggo");
   dog.whatSpeciesAmI();
+  emman.balls();
+  dog.dogBork();
 }
 
 class MyApp extends StatelessWidget {
