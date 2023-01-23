@@ -21,8 +21,12 @@ class LivingThing {
   }
 }
 class Person extends LivingThing{
-  var firstName, lastName, age;
-  Person(this.firstName, this.lastName,this.age) : super(null);
+  var firstName, lastName, age, species;
+  Person(this.firstName, this.lastName,this.age, this.species) : super(species);
+
+  factory Person.emman() {
+    return Person("Emman", "dedis", 23, 'hooman');
+  }
 
   void run(){
     if (kDebugMode) {
@@ -43,15 +47,21 @@ class Person extends LivingThing{
   void introduce(){
     print("Hello! My name is $firstName $lastName, $age years old, and you can call me $firstName");
   }
+
+  @override
+  bool operator ==(covariant Person other) => other.firstName == firstName && other.lastName == lastName;
+
+  @override
+  int get hashCode => firstName.hashCode;
+
+
 }
 
 void test(){
-  var person = Person("Emman", "Gedis", 23);
+  var emman = Person.emman();
+  emman.introduce();
+  emman.whatSpeciesAmI();
   var dog = LivingThing("doggo");
-  person.run();
-  person.inhale();
-  person.introduce();
-  person.whatSpeciesAmI();
   dog.whatSpeciesAmI();
 }
 
