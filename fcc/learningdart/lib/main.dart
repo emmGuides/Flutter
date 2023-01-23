@@ -67,6 +67,8 @@ extension extend on Person{
   void balls(){
     print("[extension] BALLS! exclaimed $firstName $lastName");
   }
+  //fullName getter
+  String get fullName => "$firstName $lastName";
 }
 
 extension bork on LivingThing{
@@ -75,7 +77,11 @@ extension bork on LivingThing{
   }
 }
 
-void test(){
+Future<int> willBeMultiplying (int num) {
+  return Future.delayed(const Duration(seconds: 5), () => num*2);
+}
+
+void test() async {
   var emman = Person.emman();
   emman.introduce();
   emman.whatSpeciesAmI();
@@ -83,6 +89,10 @@ void test(){
   dog.whatSpeciesAmI();
   emman.balls();
   dog.dogBork();
+  String fullName = emman.fullName;
+  print("[extension] fullname is $fullName");
+  var res = await willBeMultiplying(69);
+  print("[async] the answer is $res");
 }
 
 class MyApp extends StatelessWidget {
@@ -91,8 +101,10 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+
     getFullName("Emman", "well gedis");
     test();
+
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
