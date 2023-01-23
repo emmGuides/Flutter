@@ -85,6 +85,12 @@ Stream<String> willBeSendingString () {
   return Stream.periodic(const Duration(seconds: 1), (value) => "balls!");
 }
 
+class Pair<A, B, C>{
+  A val1;
+  B val2;
+  Pair(this.val1, this.val2);
+}
+
 void test() async {
   var emman = Person.emman();
   emman.introduce();
@@ -99,10 +105,12 @@ void test() async {
   print("[async] the answer is $res");
 
   int counto = 0;
-  await for (var word in willBeSendingString()){
-    counto = counto + 1;
-    print("[STREAM yo] $counto: $word");
-  }
+
+  var pair1 = Pair("balls", 3);
+  // await for (var word in willBeSendingString()){
+  //   counto = counto + 1;
+  //   print("[STREAM yo] $counto: $word");
+  // }
 }
 
 class MyApp extends StatelessWidget {
