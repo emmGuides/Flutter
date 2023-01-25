@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:instaclone/responsive/mobile_screen_layout.dart';
 import 'package:instaclone/responsive/responsive_layout_screen.dart';
@@ -9,7 +10,9 @@ void main() {
 }
 
 void test(){
-  print("balls");
+  if(kDebugMode){
+    print("balls");
+  }
 }
 
 class MyApp extends StatelessWidget {
