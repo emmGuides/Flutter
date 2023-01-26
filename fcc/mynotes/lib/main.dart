@@ -21,8 +21,17 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  // variables
+  late final TextEditingController _email;
+  late final TextEditingController _password;
 
   @override
   Widget build(BuildContext context) {
@@ -31,18 +40,24 @@ class HomePage extends StatelessWidget {
         title: const Center(child: Text('Register')) ,
       ),
       body: Center(
-        child: TextButton(
-          onPressed: () {
-            if (kDebugMode) {
-              print("[PRESS] Balls");
-            }
-          },
-          onLongPress: () {
-            if (kDebugMode) {
-              print('[LONG PRESS] Ballserist');
-            }
-          },
-          child: const Text('Register'),
+        child: Column(
+          children: [
+            TextField(),
+            TextField(),
+            TextButton(
+              onPressed: () async {
+                if (kDebugMode) {
+                  print("[PRESS] Balls");
+                }
+              },
+              onLongPress: () {
+                if (kDebugMode) {
+                  print('[LONG PRESS] Ballserist');
+                }
+              },
+              child: const Text('Register'),
+            ),
+          ], // children
         ),
       ),
     );
