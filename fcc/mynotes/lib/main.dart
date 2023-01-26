@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -25,6 +26,25 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      appBar: AppBar(
+        title: const Center(child: Text('Register')) ,
+      ),
+      body: Center(
+        child: TextButton(
+          onPressed: () {
+            if (kDebugMode) {
+              print("[PRESS] Balls");
+            }
+          },
+          onLongPress: () {
+            if (kDebugMode) {
+              print('[LONG PRESS] Ballserist');
+            }
+          },
+          child: const Text('Register'),
+        ),
+      ),
+    );
   }
 }
