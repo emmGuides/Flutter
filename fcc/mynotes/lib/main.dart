@@ -87,7 +87,9 @@ class _HomePageState extends State<HomePage> {
                 final userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
                     email: email, password: password
                 );
-                print(userCredential);
+                if (kDebugMode) {
+                  print(userCredential);
+                }
               },
               onLongPress: () {
                 if (kDebugMode) {
