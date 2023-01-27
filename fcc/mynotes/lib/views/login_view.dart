@@ -86,13 +86,25 @@ class _LoginViewState extends State<LoginView> {
                         final email = _email.text;
                         final password = _password.text;
                         // TODO initialize firebase 8:49:09
-                        // initialize firebase
-
-                        final userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
-                            email: email, password: password
-                        );
-                        if (kDebugMode) {
-                          print(userCredential);
+                        // login user
+                        try {
+                          final userCredential = await FirebaseAuth.instance
+                              .signInWithEmailAndPassword(
+                              email: email, password: password
+                          );
+                          if (kDebugMode) {
+                            print(userCredential);
+                          }
+                        } on FirebaseAuthException catch (e) {
+                          if(e.code == 'user-not-found'){
+                            if (kDebugMode) {
+                              print('User not found!');
+                            }
+                          }
+                          if(kDebugMode){
+                            var error = e;
+                            print('error logging in, [$error]');
+                          }
                         }
                       },
                       onLongPress: () {
