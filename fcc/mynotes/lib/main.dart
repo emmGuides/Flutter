@@ -107,7 +107,7 @@ class _RegisterViewState extends State<RegisterView> {
                         }
                         final email = _email.text;
                         final password = _password.text;
-                        // TODO initialize firebase 8:49:09
+                        // TODO Register Exceptions 9:39:57
                         // initialize firebase
 
                         final userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
