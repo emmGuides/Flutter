@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:mynotes/views/login_view.dart';
@@ -34,7 +35,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Center(child: Text('HOMEPAGE')) ,
+        title: const Center(child: Text('HOMEPAGE'), heightFactor: 240, widthFactor: 240) ,
       ),
       body: FutureBuilder(
         future: Firebase.initializeApp(
@@ -52,6 +53,13 @@ class HomePage extends StatelessWidget {
               return Text('oopsie 3');
               break;
             case ConnectionState.done:
+              final user = FirebaseAuth.instance.currentUser;
+              final emailVerifiedCheck = user?.emailVerified ?? false;
+              if(emailVerifiedCheck) {
+                print('[VERIFIED] User is Verified');
+              } else {
+                print('[UNVERIFIED] User is not verified');
+              }
               return const Center(child: Text('BRO DONEZA'));
             default:
               return const Center(child: Text('Loading . . . '));
