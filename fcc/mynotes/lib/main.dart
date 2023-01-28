@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const LoginView(),
+      home: const RegisterView(),
     );
   }
 }
@@ -109,13 +109,26 @@ class _RegisterViewState extends State<RegisterView> {
                         final password = _password.text;
                         // TODO Register Exceptions 9:39:57
                         // initialize firebase
-
-                        final userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
-                            email: email, password: password
-                        );
-                        if (kDebugMode) {
-                          print(userCredential);
+                        try{
+                          final userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+                              email: email, password: password
+                          );
+                          if (kDebugMode) {
+                            print(userCredential);
+                          }
+                        } on FirebaseAuthException catch (e) {
+                          if(e.code == 'email-already-in-use' ){
+                            print('Email already in use!');
+                          } else if (e.code == 'weak-password'){
+                            print('Weak Password!');
+                          } else if (e.code == 'invalid-email') {
+                            print('Email inputted is invalid!');
+                          } else {
+                            print('Something wrong happened.');
+                            print(e);
+                          }
                         }
+
                       },
                       onLongPress: () {
                         if (kDebugMode) {
