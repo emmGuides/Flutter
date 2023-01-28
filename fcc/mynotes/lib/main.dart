@@ -60,6 +60,7 @@ class HomePage extends StatelessWidget {
               } else {
                 print('[UNVERIFIED] User is not verified');
               }
+              // print the string balls
               return const Center(child: Text('BRO DONEZA'));
             default:
               return const Center(child: Text('Loading . . . '));
